@@ -1,6 +1,7 @@
 import os
 import orjson
 import yaml
+from dotenv import dotenv_values
 
 
 def parse_config(config_path: str) -> dict:
@@ -13,5 +14,7 @@ def parse_config(config_path: str) -> dict:
     elif ext in (".yaml", ".yml"):
         with open(config_path, "r") as f:
             return yaml.safe_load(f)
+    elif ext in ('.env', ''):
+        return dotenv_values(config_path)
     else:
         raise ValueError(f"Unsupported config format: {ext}")

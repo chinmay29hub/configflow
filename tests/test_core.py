@@ -25,6 +25,15 @@ def test_validation_error(temp_config):
     with pytest.raises(ValueError, match="Config validation failed"):
         config.load(schema={"port": str})
 
+def test_load_env_config(tmp_path):
+    config_path = tmp_path / ".env"
+    config_data = "PORT=8080\nDEBUG=True\n"
+    with open(config_path, "w") as f:
+        f.write(config_data)
+    config = ConfigFlow(config_path)
+    result = config.load(schema={"PORT": int, "DEBUG": bool})
+    assert result == {"PORT": 8080, "DEBUG": True}
+
 
 def test_on_change(temp_config):
     config = ConfigFlow(temp_config)

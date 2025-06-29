@@ -21,6 +21,7 @@ setup(
         "PyYAML>=6.0",
         "orjson>=3.0",
         "pydantic>=2.0",
+        "python-dotenv>=1.1",
     ],
     extras_require={
         "dev": [
@@ -34,6 +35,7 @@ setup(
             "types-PyYAML",
             "pylint>=3.0",
             "mypy>=1.0",
+            "python-dotenv>=1.1",
         ],
     },
     python_requires=">=3.9",
